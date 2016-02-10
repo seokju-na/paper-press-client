@@ -1,45 +1,33 @@
-import diff from 'virtual-dom/diff';
-import serializePatch from 'vdom-serialized-patch/serialize';
-import fromJson from 'vdom-as-json/fromJson';
+import Messenger from './messenger/messenger';
+import Patcher from './patcher/patcher';
 
-import { MESSAGE_TYPES } from './js/constants';
-import Main from './views/Main';
+import CoreModel from './models/core.model';
+import DialogModel from './models/dialog.model';
+import InputModel from './models/input.model';
 
-let currentVDom;
-
-const state = {
+const messenger = new Messenger({
+    init: false,
     texts: '',
-    blogInfo: null,
-    posts: null,
-    selectPost: null,
-    url: '/'
-};
+    blogConfig: null,
+    papers: null,
+    selectPaperIndex: null,
+    paperChangePoint: false,
+    blogConfigChangePoint: false,
+    openDialog: null,
+    eventLog: '',
+    tools: false
+});
 
-self.onmessage = ({data}) => {
-    const { type, payload } = data;
+const patcher = Patcher();
 
-    switch (type) {
-        case MESSAGE_TYPES.START:
-            currentVDom = fromJson(payload.virtualDOM);
-            state.url = payload.url;
-            break;
+const coreModel = CoreModel();
+const dialogModel = DialogModel();
+const inputModel = InputModel();
 
-        case MESSAGE_TYPES.SET_URL:
-            state.url = payload.url;
-            break;
+messenger.flowTo(inputModel);
+inputModel.flowTo(dialogModel);
+dialogModel.flowTo(coreModel);
+coreModel.flowTo(patcher);
+patcher.flowTo(messenger);
 
-        case MESSAGE_TYPES.INPUT_TEXT:
-            state.texts = payload;
-            break;
-    }
-
-    const newVDom = Main(state);
-    const patches = diff(currentVDom, newVDom);
-
-    currentVDom = newVDom;
-
-    self.postMessage({
-        url: state.url,
-        payload: serializePatch(patches)
-    });
-};
+messenger.listenStart();
