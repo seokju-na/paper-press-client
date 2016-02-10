@@ -5,29 +5,31 @@ class Observer {
         this._subscribes = [];
     }
 
-    dispatch(data, task) {
-        if (!data.hasOwnProperty('payload'))
-            throw new Error("Error in Observer.dispatch(...): no payload data.");
-
-        if (!data.hasOwnProperty('type'))
-            throw new Error("Error in Observer.dispatch(...): no type data.");
-
-        task(data.payload, data.type).then((res) => {
-            _.forEach(this._subscribes, (callback) => {
-                callback(res);
+    dispatch({ state, payload }, task) {
+        if (task === null)
+            _.forEach(this._subscribes, (observer) => {
+                observer.dispatch({ state, payload });
             });
-        }).catch((err) => {
-            _.forEach(this._subscribes, (callback) => {
-                callback(err);
+
+        else
+            task({state, payload}).then(({ state, payload }) => {
+                _.forEach(this._subscribes, (observer) => {
+                    observer.dispatch({state, payload});
+                });
+            }).catch((err) => {
+                _.forEach(this._subscribes, (observer) => {
+                    observer.error(err);
+                });
             });
-        });
     }
 
-    subscribe(callback) {
-        if (!_.isFunction(callback))
-            throw new Error("Error in Observer.subscribe(...): callback must be function.");
+    error() {}
 
-        this._subscribes.push(callback);
+    flowTo(observer) {
+        if (!(observer instanceof Observer))
+            throw new Error("Error in Observer.subscribe(...): subscriber must extend Observer.");
+
+        this._subscribes.push(observer);
     }
 }
 
