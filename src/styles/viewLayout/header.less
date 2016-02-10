@@ -1,0 +1,27 @@
+.header {
+    flex: none;
+    display: flex;
+    justify-content: space-between;
+
+    height: 33px;
+    background-color: @color-bromic-header;
+    border-bottom: 3px solid @color-bromic-main;
+
+    &-logo {
+        margin-left: 16px;
+        display: inline-block;
+        color: #FFFFFF;
+        height: 30px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 30px;
+    }
+
+    &-eventLog {
+        margin-left: 8px;
+        display: inline-block;
+        color: lighten(@color-bromic-header, 30%);
+        font-size: 12px;
+        font-weight: 300;
+    }
+}

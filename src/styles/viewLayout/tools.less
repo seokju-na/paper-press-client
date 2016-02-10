@@ -1,0 +1,143 @@
+.tools {
+    display: block;
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    padding-right: 15px;
+
+    &-top {
+        width: 100%;
+        display: flex;
+
+        justify-content: flex-end;
+        border-bottom: 5px solid @color-bromic-main;
+
+        &-switch {
+            margin: 0 0 -5px 0;
+
+            outline: 0;
+            border: 0;
+
+            padding: 4px 6px;
+
+            background-color: @color-bromic-main;
+            cursor: pointer;
+            will-change: opacity;
+            transition: opacity .2s ease;
+
+            &:hover { opacity: .65; }
+
+            font-size: 24px;
+            line-height: 1;
+            color: #FFFFFF;
+        }
+    }
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+
+        background-color: @color-bromic-header;
+
+        padding: 6px 0;
+
+        &.hide { display: none; }
+
+        &-item {
+            display: flex;
+            align-items: center;
+
+            padding: 4px 8px;
+
+            &-label {
+                width: 105px;
+                flex: none;
+                display: inline-block;
+
+                font-size: 14px;
+                line-height: 1;
+                color: #FFFFFF;
+
+                margin-right: 8px;
+
+                &.__url {
+                    &:after {
+                        display: inline-block;
+                        font-size: 12px;
+                        align-self: flex-end;
+
+                        color: lighten(@color-bromic-side, 45%);
+                        content: "(URL)";
+                        margin-left: 4px;
+                    }
+                }
+
+                &.__summary {
+                    align-self: flex-start;
+                }
+            }
+
+            &__input {
+                flex: 1;
+
+                padding: 2px 4px;
+                font-size: 14px;
+                line-height: 1;
+
+                background-color: @color-bromic-side;
+                border: 0;
+                outline: 0;
+
+                color: lighten(@color-bromic-side, 45%);
+            }
+
+            &__textarea {
+                flex: 1;
+
+                resize: none;
+
+                outline: 0;
+                border: 0;
+
+                padding: 2px 4px;
+                font-size: 14px;
+                line-height: 1.5;
+
+                background-color: @color-bromic-side;
+
+                color: lighten(@color-bromic-side, 45%);
+            }
+        }
+
+        &-tags {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 4px 6px 4px 125px;
+
+            i {
+                flex: none;
+                font-size: 14px;
+                line-height: 1.5;
+                color: lighten(@color-bromic-side, 55%);
+                margin-right: 8px;
+            }
+
+            &-tag {
+                flex: none;
+                display: inline-block;
+
+                font-size: 14px;
+                line-height: 1.5;
+                color: lighten(@color-bromic-side, 35%);
+                margin-right: 6px;
+            }
+        }
+    }
+}

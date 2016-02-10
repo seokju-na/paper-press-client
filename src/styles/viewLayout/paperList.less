@@ -1,0 +1,106 @@
+.paperList {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    background-color: @color-bromic-side;
+
+    &-menu {
+        flex: none;
+        display: flex;
+
+        padding: 8px;
+
+        &-btn {
+            flex: 1;
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin: 0;
+            outline: 0;
+            border: 0;
+            padding: 8px 0;
+
+            background-color: @color-bromic-main;
+            color: @color-material-grey-50;
+            border-radius: 1px;
+
+            cursor: pointer;
+            will-change: background-color;
+            transition: background-color .2s ease;
+
+            &:hover { background-color: lighten(@color-bromic-main, 5%); }
+
+            font-size: 14px;
+            font-weight: 500;
+
+            &:after {
+                display: inline-block;
+                font-family: @font-default;
+                padding-left: 4px;
+                content: "New Paper";
+            }
+        }
+    }
+
+    &-list {
+        flex: 1;
+        display: block;
+        overflow-y: scroll;
+
+        padding: 0 8px;
+
+        &-item {
+            display: block;
+            padding: 8px 10px;
+
+            margin-bottom: 8px;
+
+            background-color: lighten(@color-bromic-side, 10%);
+
+
+            &-title {
+                display: block;
+                font-size: 16px;
+                line-height: 1.2;
+                font-weight: 500;
+                cursor: pointer;
+
+                &:hover { text-decoration: underline; }
+            }
+            &.selected {
+                background-color: lighten(@color-bromic-side, 20%);
+
+                &-title {
+                    cursor: default;
+                    text-decoration: none;
+                }
+            }
+            &-date {
+                display: block;
+                font-size: 12px;
+                font-weight: 300;
+                font-style: italic;
+            }
+            &-tags {
+                display: flex;
+                font-size: 13px;
+                margin-top: 8px;
+
+                align-items: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+
+                i { margin-right: 6px; font-size: 13px; }
+
+                &-tag {
+                    font-weight: 300;
+                    margin-right: 4px;
+                    line-height: 1.3;
+                }
+            }
+        }
+    }
+}
