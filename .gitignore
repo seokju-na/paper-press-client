@@ -4,9 +4,6 @@
 # Ignore Libraries
 node_modules/
 
-# Ignore Build Files
-dist/
-
 # Ignore Others
 .DS_Store*
 ehthumbs.db
