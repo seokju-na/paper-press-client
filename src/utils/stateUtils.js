@@ -29,7 +29,7 @@ export const makeDefaultPaper = (state) => {
     _state.papers.unshift({
         title: "(Untitled)",
         date: new Date(),
-        tags: ['Not tagged'],
+        tags: ['NotTagged'],
         summary: '',
         titleImage: '',
         paperId: null
