@@ -11,13 +11,14 @@ export default (state) => {
         });
     
     let hide = (!state.tools) ? " hide" : "";
-    let icon = (!state.tools) ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+    let icon = (state.tools) ?
+        <button ui={ UI.BUTTON_TOOLS } className="material-icons tools-top-switch">&#xE313;</button> : <button ui={ UI.BUTTON_TOOLS } className="material-icons tools-top-switch">&#xE316;</button>;
+
 
     return (
         <div className="tools">
             <div className="tools-top">
-                <button ui={ UI.BUTTON_TOOLS }
-                        className="material-icons tools-top-switch">{ icon }</button>
+                { icon }
             </div>
             <div className={ "tools-body" + hide }>
                 <div className="tools-body-item">

@@ -16,7 +16,7 @@ export default ({ blogConfig }) => {
                     </div>
                 </div>
                 <div className="dialog-deploy-body-message">
-                    Your blog is now running on <a className="isValid" href={ blogDomain }>{ blogDomain }</a>
+                    Your blog is now running on <a className="isValid" target="_blank" href={ blogDomain }>{ blogDomain }</a>
                 </div>
             </div>
             <div className="dialog-deploy-footer">
