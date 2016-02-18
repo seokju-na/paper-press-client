@@ -10,7 +10,6 @@ class Messenger extends Observer {
 
     dispatch({ state, payload }) {
         this._state = state;
-        console.log("State on " + payload.type, _.clone(this._state));
 
         if (state.openDialog !== null)
             payload.type = MESSAGE_TYPES.OPEN_DIALOG;
