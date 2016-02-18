@@ -36,8 +36,6 @@ function inputPaperInfo({ state, payload }) {
                 tags: tags
             });
 
-        console.log(state);
-
         resolve({ state, payload });
     });
 }
